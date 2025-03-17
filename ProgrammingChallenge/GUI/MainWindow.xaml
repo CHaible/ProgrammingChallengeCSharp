@@ -1,0 +1,52 @@
+﻿<Window x:Class="ProgrammingChallenge.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:viewModels="clr-namespace:ProgrammingChallenge.ViewModels"
+		xmlns:res="clr-namespace:ProgrammingChallenge.Resources"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="1080" Width="1920">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition></RowDefinition>
+		</Grid.RowDefinitions>
+		<Grid Grid.Column="1" Grid.Row="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="2*"></RowDefinition>
+				<RowDefinition Height="*"></RowDefinition>
+				<RowDefinition Height="2*"></RowDefinition>
+				<RowDefinition Height="*"></RowDefinition>
+				<RowDefinition Height="2*"></RowDefinition>
+				
+			</Grid.RowDefinitions>
+			<Button Grid.Column="0" Grid.Row="0"
+					Content="{x:Static res:Resources.lblAnalyzeWeather}" Click="ButtonWeather_Click"/>
+			<DataGrid Grid.Column="0" Grid.Row="2" ItemsSource="{Binding WeatherViewModels}" AutoGenerateColumns="False" IsReadOnly="True" 
+					  Visibility="{Binding WeatherVisibility}">
+				<DataGrid.Columns>
+					<DataGridTextColumn Header="{x:Static res:Resources.lblDay}" Width="*" Binding="{Binding Day}" />
+					<DataGridTextColumn Header="{x:Static res:Resources.lblMaxTemp}" Width="*" Binding="{Binding MaxTemp}" />
+					<DataGridTextColumn Header="{x:Static res:Resources.lblMinTemp}" Width="*" Binding="{Binding MinTemp}" />
+				</DataGrid.Columns>
+
+			</DataGrid>
+			<Button Grid.Column="0" Grid.Row="4" Width="200" Height="50" VerticalAlignment="Top"
+					Content="{x:Static res:Resources.lblReset}" Click="ButtonReset_Click" IsEnabled="{Binding IsResetPossible}"/>
+		</Grid>
+		
+		
+
+    </Grid>
+</Window>
