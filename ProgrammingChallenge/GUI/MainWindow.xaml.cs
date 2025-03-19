@@ -11,7 +11,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ProgrammingChallenge.Application;
 
 namespace ProgrammingChallenge
 {
@@ -20,23 +19,12 @@ namespace ProgrammingChallenge
     /// </summary>
     public partial class MainWindow : Window
 	{
+		/// <summary>
+		/// Initialize Component
+		/// </summary>
 		public MainWindow()
 		{
 			InitializeComponent();
-			_manager = new MainWindowManager();
-			DataContext = _manager.MainViewModel;
-		}
-
-		public MainWindowManager _manager { get; set; }
-		
-		private void ButtonWeather_Click(object sender, RoutedEventArgs e)
-		{
-			_manager.WeatherChallenge();
-		}
-
-		private void ButtonReset_Click(object sender, RoutedEventArgs e)
-		{
-			_manager.ResetWeather();
 		}
 	}
 }

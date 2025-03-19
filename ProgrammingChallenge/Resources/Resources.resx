@@ -117,14 +117,50 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="errorAnalyseCountries" xml:space="preserve">
+    <value>Fehler beim Analysieren der Länder</value>
+  </data>
+  <data name="errorAnalyseWeather" xml:space="preserve">
+    <value>Fehler beim Analysieren des Wetters</value>
+  </data>
+  <data name="errorAreaInvalid" xml:space="preserve">
+    <value>Fläche muss größer als null sein</value>
+  </data>
+  <data name="errorDayNegative" xml:space="preserve">
+    <value>Tag muss positiv sein</value>
+  </data>
+  <data name="errorInvalidData" xml:space="preserve">
+    <value>Ungültige Daten</value>
+  </data>
+  <data name="errorNameEmpty" xml:space="preserve">
+    <value>Name darf nicht leer sein</value>
+  </data>
+  <data name="errorPopulationNegative" xml:space="preserve">
+    <value>Bevölkerung muss positiv sein</value>
+  </data>
+  <data name="errorTemperaturesInvalid" xml:space="preserve">
+    <value>MinTemp darf nicht größer als MaxTemp sein</value>
+  </data>
+  <data name="keyNameArea" xml:space="preserve">
+    <value>Area (km²)</value>
+  </data>
+  <data name="keyNameCountryname" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="keyNameDay" xml:space="preserve">
     <value>Day</value>
   </data>
-  <data name="keyNameMax" xml:space="preserve">
+  <data name="keyNameMaxTemp" xml:space="preserve">
     <value>MxT</value>
   </data>
-  <data name="keyNameMin" xml:space="preserve">
+  <data name="keyNameMinTemp" xml:space="preserve">
     <value>MnT</value>
+  </data>
+  <data name="keyNamePopulation" xml:space="preserve">
+    <value>Population</value>
+  </data>
+  <data name="lblAnalyzeCountries" xml:space="preserve">
+    <value>Länder analysieren</value>
   </data>
   <data name="lblAnalyzeWeather" xml:space="preserve">
     <value>Wetter analysieren</value>
@@ -141,7 +177,13 @@
   <data name="lblReset" xml:space="preserve">
     <value>Zurücksetzen</value>
   </data>
+  <data name="pathCountries" xml:space="preserve">
+    <value>Resources/de/bcxp/challenge/countries.csv</value>
+  </data>
   <data name="pathWeather" xml:space="preserve">
     <value>Resources/de/bcxp/challenge/weather.csv</value>
+  </data>
+  <data name="unitPopulationDensity" xml:space="preserve">
+    <value>Menschen/km²</value>
   </data>
 </root>

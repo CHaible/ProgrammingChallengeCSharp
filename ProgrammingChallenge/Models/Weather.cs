@@ -1,54 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Shapes;
+﻿using ProgrammingChallenge.Resources;
 
-namespace ProgrammingChallenge.Models
+public class Weather
 {
-	public class Weather
+	/// <summary>
+	/// Number of day
+	/// </summary>
+	public int Day { get; }
+
+	/// <summary>
+	/// Maximum temperature on this day
+	/// </summary>
+	public int MaxTemp { get; }
+
+	/// <summary>
+	/// Minimum temperature on this day
+	/// </summary>
+	public int MinTemp { get; }
+
+	/// <summary>
+	/// Constructor for the Weather class with validation of the parameters, initializes properties
+	/// </summary>
+	/// <param name="day">Number of day</param>
+	/// <param name="minTemp">Minimum temperature on this day</param>
+	/// <param name="maxTemp">Maximum temperature on this day</param>
+	/// <exception cref="ArgumentException"></exception>
+	public Weather(int day, int minTemp, int maxTemp)
 	{
-		private int day;
-		private int? maxTemp = null;
-		private int? minTemp = null;
+		if (day < 0) throw new ArgumentOutOfRangeException(nameof(day), Resources.errorDayNegative);
+		if (minTemp > maxTemp) throw new ArgumentException(Resources.errorTemperaturesInvalid);
 
-		/// <summary>
-		/// COnstructor for instantiating new weather-objects with the three known values
-		/// </summary>
-		/// <param name="day">Day of month</param>
-		/// <param name="minTemp">Lowest temperature on this day</param>
-		/// <param name="maxTemp">Highest temperature on this day</param>
-		public Weather(int day, int minTemp, int maxTemp)
-		{
-			this.day = day;
-			this.minTemp = minTemp;
-			this.maxTemp = maxTemp;
-		}
+		Day = day;
+		MinTemp = minTemp;
+		MaxTemp = maxTemp;
+	}
 
-		public Weather()
-		{
-			this.day = int.MaxValue;
-		}
-
-		public int getDay()
-		{
-			return day;
-		}
-
-		public int? getMinTemp()
-		{
-			return minTemp;
-		}
-		
-		public int? getMaxTemp()
-		{
-			return maxTemp;
-		}
-
-		public int? getTemperatureSpread()
-		{
-			return maxTemp - minTemp;
-		}
+	/// <summary>
+	/// Calculates the temperature spread of the day
+	/// </summary>
+	/// <returns></returns>
+	public int CalculateTemperatureSpread()
+	{
+		return MaxTemp - MinTemp;
 	}
 }

@@ -11,51 +11,26 @@ namespace ProgrammingChallenge.Test
 	public class WeatherTest
 	{
 		[Fact]
-		public void GetDayTest()
+		public void WeatherPropertiesTest()
 		{
-			Weather w0 = new Weather();
 			Weather w1 = new Weather(1, 70, 80);
-			Weather w2 = new Weather(-3, 70, 70);
 
-			Assert.Equal(int.MaxValue, w0.getDay());
-			Assert.Equal(1, w1.getDay());
-			Assert.Equal(-3, w2.getDay());
+			Assert.Equal(1, w1.Day);
+			Assert.Equal(70, w1.MinTemp);
+			Assert.Equal(80, w1.MaxTemp);
+			Assert.Throws<ArgumentOutOfRangeException>(() => new Weather(-3, 70, 80));
+			Assert.Throws<ArgumentException>(() => new Weather(4, 80, 50));
 		}
 
 		[Fact]
-		public void GetMaxTempTest()
+		public void CalculateTempSpreadTest()
 		{
-			Weather w0 = new Weather();
 			Weather w1 = new Weather(1, 70, 80);
+			Weather w3 = new Weather(1, 70, 70);
 
-			Assert.Null(w0.getMaxTemp());
-			Assert.Equal(80, w1.getMaxTemp());
+			Assert.Equal(10, w1.CalculateTemperatureSpread());
+			Assert.Throws<ArgumentException>(() => new Weather(2, 80, 70));
+			Assert.Equal(0, w3.CalculateTemperatureSpread());
 		}
-
-		[Fact]
-		public void GetMinTempTest()
-		{
-			Weather w0 = new Weather();
-			Weather w1 = new Weather(1, 70, 80);
-
-			Assert.Null(w0.getMinTemp());
-			Assert.Equal(70, w1.getMinTemp());
-		}
-
-		[Fact]
-		public void GetTempSpreadTest()
-		{
-			Weather w0 = new Weather();
-			Weather w1 = new Weather(1, 70, 80);
-			Weather w2 = new Weather(2, 80, 70);
-			Weather w3 = new Weather(3, 70, 70);
-
-			Assert.Null(w0.getTemperatureSpread());
-			Assert.Equal(10, w1.getTemperatureSpread());
-			Assert.Equal(-10, w2.getTemperatureSpread());
-			Assert.Equal(0, w3.getTemperatureSpread());
-
-		}
-
 	}
 }

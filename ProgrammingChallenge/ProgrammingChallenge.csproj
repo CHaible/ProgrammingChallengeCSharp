@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Application\MainWindowManager.cs" />
+    <Compile Remove="Logic\CountryAnalyzer.cs" />
+    <Compile Remove="Logic\WeatherAnalyzer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Page Include="App.xaml" />
   </ItemGroup>
 
@@ -32,6 +38,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resources\de\bcxp\challenge\weather.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\countries.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\countries2.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\weather.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

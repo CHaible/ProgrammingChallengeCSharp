@@ -61,6 +61,96 @@ namespace ProgrammingChallenge.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Analysieren der Länder ähnelt.
+        /// </summary>
+        public static string errorAnalyseCountries {
+            get {
+                return ResourceManager.GetString("errorAnalyseCountries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Analysieren des Wetters ähnelt.
+        /// </summary>
+        public static string errorAnalyseWeather {
+            get {
+                return ResourceManager.GetString("errorAnalyseWeather", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fläche muss größer als null sein ähnelt.
+        /// </summary>
+        public static string errorAreaInvalid {
+            get {
+                return ResourceManager.GetString("errorAreaInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Tag muss positiv sein ähnelt.
+        /// </summary>
+        public static string errorDayNegative {
+            get {
+                return ResourceManager.GetString("errorDayNegative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ungültige Daten ähnelt.
+        /// </summary>
+        public static string errorInvalidData {
+            get {
+                return ResourceManager.GetString("errorInvalidData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name darf nicht leer sein ähnelt.
+        /// </summary>
+        public static string errorNameEmpty {
+            get {
+                return ResourceManager.GetString("errorNameEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bevölkerung muss positiv sein ähnelt.
+        /// </summary>
+        public static string errorPopulationNegative {
+            get {
+                return ResourceManager.GetString("errorPopulationNegative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die MinTemp darf nicht größer als MaxTemp sein ähnelt.
+        /// </summary>
+        public static string errorTemperaturesInvalid {
+            get {
+                return ResourceManager.GetString("errorTemperaturesInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Area (km²) ähnelt.
+        /// </summary>
+        public static string keyNameArea {
+            get {
+                return ResourceManager.GetString("keyNameArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
+        /// </summary>
+        public static string keyNameCountryname {
+            get {
+                return ResourceManager.GetString("keyNameCountryname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Day ähnelt.
         /// </summary>
         public static string keyNameDay {
@@ -72,18 +162,36 @@ namespace ProgrammingChallenge.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die MxT ähnelt.
         /// </summary>
-        public static string keyNameMax {
+        public static string keyNameMaxTemp {
             get {
-                return ResourceManager.GetString("keyNameMax", resourceCulture);
+                return ResourceManager.GetString("keyNameMaxTemp", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die MnT ähnelt.
         /// </summary>
-        public static string keyNameMin {
+        public static string keyNameMinTemp {
             get {
-                return ResourceManager.GetString("keyNameMin", resourceCulture);
+                return ResourceManager.GetString("keyNameMinTemp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Population ähnelt.
+        /// </summary>
+        public static string keyNamePopulation {
+            get {
+                return ResourceManager.GetString("keyNamePopulation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Länder analysieren ähnelt.
+        /// </summary>
+        public static string lblAnalyzeCountries {
+            get {
+                return ResourceManager.GetString("lblAnalyzeCountries", resourceCulture);
             }
         }
         
@@ -133,11 +241,29 @@ namespace ProgrammingChallenge.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Resources/de/bcxp/challenge/countries.csv ähnelt.
+        /// </summary>
+        public static string pathCountries {
+            get {
+                return ResourceManager.GetString("pathCountries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Resources/de/bcxp/challenge/weather.csv ähnelt.
         /// </summary>
         public static string pathWeather {
             get {
                 return ResourceManager.GetString("pathWeather", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Menschen/km² ähnelt.
+        /// </summary>
+        public static string unitPopulationDensity {
+            get {
+                return ResourceManager.GetString("unitPopulationDensity", resourceCulture);
             }
         }
     }

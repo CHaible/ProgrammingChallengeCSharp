@@ -1,53 +1,134 @@
-﻿using ProgrammingChallenge.ViewModels;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
+using Moq;
+using Xunit;
+using ProgrammingChallenge.ViewModels;
+using ProgrammingChallenge.Application;
+using ProgrammingChallenge.Utilities;
+using ProgrammingChallenge.Models;
 
 namespace ProgrammingChallenge.Test
 {
-	public class MainViewModelTest
+	public class MainViewModelTests
 	{
-		[Fact]
-		public void IsResetPossibleTest() 
-		{ 
-			MainViewModel mainVM = new MainViewModel();
-			mainVM.IsResetPossible = true;
-			Assert.True(mainVM.IsResetPossible);
+		private readonly Mock<DataManager> _mockDataManager;
+		private readonly MainViewModel _viewModel;
+
+		public MainViewModelTests()
+		{
+			_mockDataManager = new Mock<DataManager>("weather.csv", "countries.csv");
+			_viewModel = new MainViewModel();
 		}
 
 		[Fact]
-		public void IsNotResetPossibleTest()
+		public void Constructor_InitializesDefaults()
 		{
-			MainViewModel mainVM = new MainViewModel();
-			mainVM.IsResetPossible = false;
-			Assert.False(mainVM.IsResetPossible);
+			// Assert
+			Assert.NotNull(_viewModel.WeatherViewModels);
+			Assert.Empty(_viewModel.WeatherViewModels);
+			Assert.Null(_viewModel.CountryToString);
+			Assert.Null(_viewModel.ErrorString);
+			Assert.Equal(Visibility.Hidden, _viewModel.WeatherVisibility);
+			Assert.Equal(Visibility.Hidden, _viewModel.CountryVisibility);
+			Assert.Equal(Visibility.Hidden, _viewModel.ErrorVisibility);
+			Assert.False(_viewModel.IsResetPossible);
 		}
 
 		[Fact]
-		public void PropertyChangedEventTest()
+		public void AnalyzeWeatherCommand_AddsWeatherViewModel()
 		{
-			MainViewModel mainVM = new MainViewModel();
-			PropertyChangedEventArgs? eventArgs = null;
-			object? thisSender = null ;
-			mainVM.PropertyChanged += (sender, e) =>
+			// Arrange
+			var weatherViewModel = new WeatherViewModel( new Weather(1, 59, 88));
+			_mockDataManager.Setup(dm => dm.GetMostUniformDay()).Returns(weatherViewModel);
+			var viewModel = new MainViewModel();
+
+			// Act
+			viewModel.AnalyzeWeatherCommand.Execute(null);
+
+			// Assert
+			Assert.Single(viewModel.WeatherViewModels);
+			Assert.Equal(weatherViewModel, viewModel.WeatherViewModels[0]);
+			Assert.Equal(Visibility.Visible, viewModel.WeatherVisibility);
+			Assert.True(viewModel.IsResetPossible);
+		}
+
+		[Fact]
+		public void AnalyzeCountryCommand_SetsCountryToString()
+		{
+			// Arrange
+			var countryViewModel = new CountryViewModel(new Country("Testland", 1000000, 500));
+			_mockDataManager.Setup(dm => dm.GetCountryWithHighestPopulationDensity()).Returns(countryViewModel);
+			var viewModel = new MainViewModel();
+
+			// Act
+			viewModel.AnalyzeCountryCommand.Execute(null);
+
+			// Assert
+			Assert.Contains("Testland", viewModel.CountryToString);
+			Assert.Equal(Visibility.Visible, viewModel.CountryVisibility);
+			Assert.True(viewModel.IsResetPossible);
+		}
+
+		[Fact]
+		public void ResetCommand_ClearsData()
+		{
+			// Arrange
+			var weatherViewModel = new WeatherViewModel(new Weather(1, 59, 88));
+			_viewModel.WeatherViewModels.Add(weatherViewModel);
+			_viewModel.CountryToString = "Testland";
+			_viewModel.ErrorString = "Error";
+
+			// Act
+			_viewModel.ResetCommand.Execute(null);
+
+			// Assert
+			Assert.Empty(_viewModel.WeatherViewModels);
+			Assert.Equal(string.Empty, _viewModel.CountryToString);
+			Assert.Equal(string.Empty, _viewModel.ErrorString);
+			Assert.Equal(Visibility.Hidden, _viewModel.WeatherVisibility);
+			Assert.Equal(Visibility.Hidden, _viewModel.CountryVisibility);
+			Assert.Equal(Visibility.Hidden, _viewModel.ErrorVisibility);
+			Assert.False(_viewModel.IsResetPossible);
+		}
+
+		[Fact]
+		public void ConversionFailedEvent_SetsErrorString()
+		{
+			// Arrange
+			string errorMessage = "Invalid input";
+			bool eventRaised = false;
+			_viewModel.ConversionFailed += (s, e) =>
 			{
-				eventArgs = e;
-				thisSender = sender;
+				eventRaised = true;
+				Assert.Contains(errorMessage, e);
 			};
-			mainVM.WeatherVisibility = System.Windows.Visibility.Collapsed;
-			Assert.NotNull(eventArgs);
-			Assert.Equal(mainVM, thisSender);
-			Assert.Equal("WeatherVisibility", eventArgs.PropertyName);
+
+			// Act
+			_viewModel.ConvertStringToInt("NotANumber");
+
+			// Assert
+			Assert.True(eventRaised);
+			Assert.Contains(errorMessage, _viewModel.ErrorString);
+			Assert.Equal(Visibility.Visible, _viewModel.ErrorVisibility);
 		}
 
 		[Fact]
-		public void PropertyChangedTest()
+		public void PropertyChanged_IsRaisedCorrectly()
 		{
-			MainViewModel mainVM = new MainViewModel();
-			mainVM.WeatherVisibility = System.Windows.Visibility.Collapsed;
+			// Arrange
+			bool eventRaised = false;
+			_viewModel.PropertyChanged += (sender, args) =>
+			{
+				if (args.PropertyName == nameof(MainViewModel.CountryToString))
+					eventRaised = true;
+			};
+
+			// Act
+			_viewModel.CountryToString = "New Country";
+
+			// Assert
+			Assert.True(eventRaised);
 		}
 	}
 }

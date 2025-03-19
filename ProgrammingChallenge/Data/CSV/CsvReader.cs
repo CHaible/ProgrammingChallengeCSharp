@@ -11,13 +11,25 @@ namespace ProgrammingChallenge.Data.CSV
 {
 	public class CsvReader : DataReader
 	{
+		/// <summary>
+		/// Separator used in CSV-Files
+		/// </summary>
 		public Char Separator { get; private set; }
 
+		/// <summary>
+		/// Constructor for the CsvReader class, initializes properties
+		/// </summary>
+		/// <param name="separator">Separator used in CSV-Files</param>
 		public CsvReader(char separator)
 		{
 			Separator = separator;
 		}
 
+		/// <summary>
+		/// Reads CSV-File and returns List of Dictionaries with header as key and value as value
+		/// </summary>
+		/// <param name="path"></param>
+		/// <returns></returns>
 		public List<Dictionary<string, string>> ReadData(string path)
 		{
 			var data = new List<Dictionary<string, string>>();
