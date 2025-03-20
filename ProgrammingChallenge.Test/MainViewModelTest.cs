@@ -97,7 +97,7 @@ namespace ProgrammingChallenge.Test
 		public void ConversionFailedEvent_SetsErrorString()
 		{
 			// Arrange
-			string errorMessage = "Invalid input";
+			string errorMessage = "Invalid";
 			bool eventRaised = false;
 			_viewModel.ConversionFailed += (s, e) =>
 			{
