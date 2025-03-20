@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
-using Moq;
 using Xunit;
 using ProgrammingChallenge.ViewModels;
 using ProgrammingChallenge.Application;
