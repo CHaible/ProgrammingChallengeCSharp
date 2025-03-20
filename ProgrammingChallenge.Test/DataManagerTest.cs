@@ -41,7 +41,7 @@ namespace ProgrammingChallenge.Test
 
 			// Assert
 			Assert.NotNull(result);
-			Assert.Equal(3, result.Day); // Tag mit geringstem TempSpread: 77-60=17
+			Assert.Equal(2, result.Day); // Tag mit geringstem TempSpread: 79-63=16
 
 			CleanupTestFile(WeatherTestFilePath);
 		}
@@ -59,7 +59,7 @@ namespace ProgrammingChallenge.Test
 
 			// Assert
 			Assert.NotNull(result);
-			Assert.Equal("Monaco", result.Country.Name); // Höchste Bevölkerungsdichte: 39242 / 2
+			Assert.Equal("Monaco", result.Name); // Höchste Bevölkerungsdichte: 39242 / 2
 
 			CleanupTestFile(CountryTestFilePath);
 		}
